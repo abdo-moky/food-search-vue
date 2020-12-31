@@ -6,7 +6,7 @@
         <div class="no-result" v-if="store.state.rec.length === 0">there are no results. search for some</div>
         <ul v-else class="results__list">
             <svg class="open-icon" :class="{'open': isResOpen}" @click="isResOpen= !isResOpen">
-                <use href="icons.svg#icon-triangle-left"></use>
+                <use href="icons.svg#icon-triangle-right"></use>
             </svg>
             <li v-for="rec in recipes" :key="rec.recipe_id" @click="selectRec(rec.recipe_id)">
                 <a class="results__link">
