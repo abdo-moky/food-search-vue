@@ -263,7 +263,11 @@ body {
     display: flex;
     align-items: center; }
     .recipe__info:not(:last-child) {
-      margin-right: 4rem; }
+      margin-right: 4rem;
+      @media only screen and (max-width: $bp-medium){
+        margin-right: 2rem;
+      }
+    }
   .recipe__info-icon {
     height: 2rem;
     width: 2rem;
