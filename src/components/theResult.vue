@@ -2,9 +2,12 @@
     <div v-if="isLoading" class= 'loader'>
         <img src="Reload.svg" alt="loader">
     </div>
-    <div v-else class="results">
+    <div v-else class="results" :class="{'get-wider': isResOpen}">
         <div class="no-result" v-if="store.state.rec.length === 0">there are no results. search for some</div>
         <ul v-else class="results__list">
+            <svg class="open-icon" :class="{'open': isResOpen}" @click="isResOpen= !isResOpen">
+                <use href="icons.svg#icon-triangle-left"></use>
+            </svg>
             <li v-for="rec in recipes" :key="rec.recipe_id" @click="selectRec(rec.recipe_id)">
                 <a class="results__link">
                     <figure class="results__fig">
@@ -48,6 +51,7 @@ export default {
     setup(){
         const store= useStore()
         const isLoading= computed(()=>{return store.getters.loading})
+        const isResOpen= ref(false)
         /* paginations****************************************** */
 
         const resPerPage= 10
@@ -88,12 +92,36 @@ export default {
             pages, 
             page,
             isLoading,
-            selectRec
+            selectRec,
+            isResOpen
         }
     }
 }
 </script>
 <style lang="scss" scoped>
+.open{
+    transform: translate(50%, -50%) rotate(180deg) !important;
+}
+.get-wider{
+    width: 150% !important;
+}
+.open-icon{
+    display: none;
+    fill: #F48982;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    opacity: .5;
+    transition: transform .4s;
+    cursor: pointer;
+    &:hover{
+        opacity: 1;
+    }
+    @media only screen and (max-width: $bp-medium){
+        display: block;
+    }
+}
 .loader img{
     width: 50%;
 }
@@ -103,8 +131,13 @@ export default {
     text-transform: capitalize;
 }
 .results {
-  padding: 3rem 0;
+    background-color: #fff;
+    transition: all .5s;
+    width: 100%;
+    padding: 3rem 0;
+    z-index: 10;
   &__list {
+      position: relative;
     list-style: none; 
   }
   &__link{

@@ -1,8 +1,9 @@
 <template>
-
+        
     <div v-if="recipe === null" class="no-recipe"></div>
 
     <div v-else class="recipe">
+        
         <figure class="recipe__fig">
             <img :src="recipe.image_url" alt="img" class="recipe__img">
             <h1 class="recipe__title">
