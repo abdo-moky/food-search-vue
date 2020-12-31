@@ -86,7 +86,7 @@ body {
   }
   @media only screen and (max-width: $bp-medium){
       grid-template-rows: 10rem minmax(100rem, auto) minmax(30rem, auto);
-      grid-template-columns: 2fr 3fr 1fr;
+      grid-template-columns: 1fr 3fr 1fr;
   }
 }
 
