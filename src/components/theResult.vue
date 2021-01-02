@@ -13,7 +13,7 @@
                     <figure class="results__fig">
                         <img :src="rec.image_url" alt="rec-photo">
                     </figure>
-                    <div class="results__data">
+                    <div :class="{'hide-element': !isResOpen}" class="results__data">
                         <h4 class="results__name">{{reduceTitle(rec.title)}}</h4>
                         <p class="results__author">{{rec.publisher}}</p>
                     </div>
@@ -99,7 +99,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+.hide-element{
+    @media only screen and (max-width: $bp-medium){
+        display: none;
+    }
+}
 .open{
     transform: translate(50%, -50%) rotate(180deg) !important;
 }
