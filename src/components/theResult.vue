@@ -13,7 +13,7 @@
                     <figure class="results__fig">
                         <img :src="rec.image_url" alt="rec-photo">
                     </figure>
-                    <div v-if="isResOpen" class="results__data">
+                    <div class="results__data">
                         <h4 class="results__name">{{reduceTitle(rec.title)}}</h4>
                         <p class="results__author">{{rec.publisher}}</p>
                     </div>

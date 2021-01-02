@@ -20,7 +20,7 @@
                     <div v-if="likes.length < 1" class="no-likes">there is no liked recipe</div>
                     <ul v-else class="likes__list">
                         
-                        <li v-for="(like, i) in likes" :key="i">
+                        <li v-for="(like, i) in likes" :key="i" @click="openLikedRecipe(i)">
                             <a class="likes__link">
                                 <figure class="likes__fig">
                                     <img :src="like.image_url" alt="photo">
@@ -53,12 +53,17 @@ export default {
           store.dispatch('getResults', searchQuery.value)
         }else alert('type something to search for')
       }
+      function openLikedRecipe(index){
+          const recipe= likes[index]
+          store.commit('openRecipe', recipe)
+          //console.log(recipe)
+      }
 
 
       return{
         searchQuery,
         makeReq,
-        
+        openLikedRecipe,
         likes
       }
     }
